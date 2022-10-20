@@ -1,9 +1,9 @@
-/* Skeleton for complex_cal.lex    */
-/* before you have added the       */
-/* proper grammar in complex_cal.y */
-/* so that complex_cal.tab.h is    */
-/* available, this code can't be   */ 
-/* compiled correctly!             */
+/* Esqueleto para complex_cal.lex */
+/* antes de agregar el */
+/* gramática adecuada en complex_cal.y */
+/* para que complex_cal.tab.h sea */
+/* disponible, este código no puede ser */
+/* compilado correctamente! */
 
 %option noyywrap
 
