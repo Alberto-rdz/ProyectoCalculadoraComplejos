@@ -1,0 +1,255 @@
+Gramática
+
+    0 $accept: input $end
+
+    1 input: ε
+    2      | input line
+
+    3 line: '\n'
+    4     | complexAddSub '\n'
+
+    5 complexAddSub: complexAddSub '+' complexMulDiv
+    6              | complexAddSub '-' complexMulDiv
+    7              | complexMulDiv
+
+    8 complexMulDiv: complexMulDiv '*' complexParenthesis
+    9              | complexMulDiv '/' complexParenthesis
+   10              | complexParenthesis
+
+   11 complexParenthesis: '(' complexAddSub ')'
+   12                   | CNUMBER
+
+
+Terminales con las reglas donde aparecen
+
+    $end (0) 0
+    '\n' (10) 3 4
+    '(' (40) 11
+    ')' (41) 11
+    '*' (42) 8
+    '+' (43) 5
+    '-' (45) 6
+    '/' (47) 9
+    error (256)
+    CNUMBER (258) 12
+
+
+No terminales con las reglas donde aparecen
+
+    $accept (11)
+        on left: 0
+    input (12)
+        on left: 1 2
+        on right: 0 2
+    line (13)
+        on left: 3 4
+        on right: 2
+    complexAddSub (14)
+        on left: 5 6 7
+        on right: 4 5 6 11
+    complexMulDiv (15)
+        on left: 8 9 10
+        on right: 5 6 7 8 9
+    complexParenthesis (16)
+        on left: 11 12
+        on right: 8 9 10
+
+
+Estado 0
+
+    0 $accept: • input $end
+
+    $default  reduce usando la regla 1 (input)
+
+    input  ir al estado 1
+
+
+Estado 1
+
+    0 $accept: input • $end
+    2 input: input • line
+
+    $end     desplazar e ir al estado 2
+    CNUMBER  desplazar e ir al estado 3
+    '('      desplazar e ir al estado 4
+    '\n'     desplazar e ir al estado 5
+
+    line                ir al estado 6
+    complexAddSub       ir al estado 7
+    complexMulDiv       ir al estado 8
+    complexParenthesis  ir al estado 9
+
+
+Estado 2
+
+    0 $accept: input $end •
+
+    $default  aceptar
+
+
+Estado 3
+
+   12 complexParenthesis: CNUMBER •
+
+    $default  reduce usando la regla 12 (complexParenthesis)
+
+
+Estado 4
+
+   11 complexParenthesis: '(' • complexAddSub ')'
+
+    CNUMBER  desplazar e ir al estado 3
+    '('      desplazar e ir al estado 4
+
+    complexAddSub       ir al estado 10
+    complexMulDiv       ir al estado 8
+    complexParenthesis  ir al estado 9
+
+
+Estado 5
+
+    3 line: '\n' •
+
+    $default  reduce usando la regla 3 (line)
+
+
+Estado 6
+
+    2 input: input line •
+
+    $default  reduce usando la regla 2 (input)
+
+
+Estado 7
+
+    4 line: complexAddSub • '\n'
+    5 complexAddSub: complexAddSub • '+' complexMulDiv
+    6              | complexAddSub • '-' complexMulDiv
+
+    '+'   desplazar e ir al estado 11
+    '-'   desplazar e ir al estado 12
+    '\n'  desplazar e ir al estado 13
+
+
+Estado 8
+
+    7 complexAddSub: complexMulDiv •
+    8 complexMulDiv: complexMulDiv • '*' complexParenthesis
+    9              | complexMulDiv • '/' complexParenthesis
+
+    '*'  desplazar e ir al estado 14
+    '/'  desplazar e ir al estado 15
+
+    $default  reduce usando la regla 7 (complexAddSub)
+
+
+Estado 9
+
+   10 complexMulDiv: complexParenthesis •
+
+    $default  reduce usando la regla 10 (complexMulDiv)
+
+
+Estado 10
+
+    5 complexAddSub: complexAddSub • '+' complexMulDiv
+    6              | complexAddSub • '-' complexMulDiv
+   11 complexParenthesis: '(' complexAddSub • ')'
+
+    '+'  desplazar e ir al estado 11
+    '-'  desplazar e ir al estado 12
+    ')'  desplazar e ir al estado 16
+
+
+Estado 11
+
+    5 complexAddSub: complexAddSub '+' • complexMulDiv
+
+    CNUMBER  desplazar e ir al estado 3
+    '('      desplazar e ir al estado 4
+
+    complexMulDiv       ir al estado 17
+    complexParenthesis  ir al estado 9
+
+
+Estado 12
+
+    6 complexAddSub: complexAddSub '-' • complexMulDiv
+
+    CNUMBER  desplazar e ir al estado 3
+    '('      desplazar e ir al estado 4
+
+    complexMulDiv       ir al estado 18
+    complexParenthesis  ir al estado 9
+
+
+Estado 13
+
+    4 line: complexAddSub '\n' •
+
+    $default  reduce usando la regla 4 (line)
+
+
+Estado 14
+
+    8 complexMulDiv: complexMulDiv '*' • complexParenthesis
+
+    CNUMBER  desplazar e ir al estado 3
+    '('      desplazar e ir al estado 4
+
+    complexParenthesis  ir al estado 19
+
+
+Estado 15
+
+    9 complexMulDiv: complexMulDiv '/' • complexParenthesis
+
+    CNUMBER  desplazar e ir al estado 3
+    '('      desplazar e ir al estado 4
+
+    complexParenthesis  ir al estado 20
+
+
+Estado 16
+
+   11 complexParenthesis: '(' complexAddSub ')' •
+
+    $default  reduce usando la regla 11 (complexParenthesis)
+
+
+Estado 17
+
+    5 complexAddSub: complexAddSub '+' complexMulDiv •
+    8 complexMulDiv: complexMulDiv • '*' complexParenthesis
+    9              | complexMulDiv • '/' complexParenthesis
+
+    '*'  desplazar e ir al estado 14
+    '/'  desplazar e ir al estado 15
+
+    $default  reduce usando la regla 5 (complexAddSub)
+
+
+Estado 18
+
+    6 complexAddSub: complexAddSub '-' complexMulDiv •
+    8 complexMulDiv: complexMulDiv • '*' complexParenthesis
+    9              | complexMulDiv • '/' complexParenthesis
+
+    '*'  desplazar e ir al estado 14
+    '/'  desplazar e ir al estado 15
+
+    $default  reduce usando la regla 6 (complexAddSub)
+
+
+Estado 19
+
+    8 complexMulDiv: complexMulDiv '*' complexParenthesis •
+
+    $default  reduce usando la regla 8 (complexMulDiv)
+
+
+Estado 20
+
+    9 complexMulDiv: complexMulDiv '/' complexParenthesis •
+
+    $default  reduce usando la regla 9 (complexMulDiv)
