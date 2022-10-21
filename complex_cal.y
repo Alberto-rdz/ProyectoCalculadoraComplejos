@@ -1,7 +1,8 @@
-/* Skeleton for complex_cal.y  */
-/* before you have added the   */
-/* proper grammar, this code   */
-/*can't be compiled correctly! */
+/* Esqueleto para complex_cal.y */
+/* antes de agregar el */
+/* gramática adecuada, este código */
+/*¡No se puede compilar correctamente! */
+
 %{
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,11 +66,11 @@ int yyerror(const char* s) {
   return 0; 
 }
 
-/* function provided to do complex addition      */
-/* input : complex numbers c1, c2                */
-/* output: nothing                               */
-/* side effect : none                            */
-/* return value: result of addition in c3        */ 
+/* función provista para hacer sumas complejas */
+/* entrada: números complejos c1, c2 */
+/* salida: nada */
+/* efecto secundario: ninguno */
+/* valor devuelto: resultado de la suma en c3 */
 complex complex_add (complex c1, complex c2) {
   /* c1 + c2 */
   complex c3;
@@ -78,11 +79,11 @@ complex complex_add (complex c1, complex c2) {
   return c3;
 }
 
-/* function provided to do complex subtraction   */
-/* input : complex numbers c1, c2                */
-/* output: nothing                               */
-/* side effect : none                            */
-/* return value: result of subtraction in c3     */ 
+/* función provista para hacer restas complejas */
+/* entrada: números complejos c1, c2 */
+/* salida: nada */
+/* efecto secundario: ninguno */
+/* valor devuelto: resultado de la resta en c3 */
 complex complex_sub (complex c1, complex c2) {
   /* c1 - c2 */
   complex c3;
@@ -91,26 +92,26 @@ complex complex_sub (complex c1, complex c2) {
   return c3;
 }
 
-/* function provided to do complex multiplication */
-/* input : complex numbers c1, c2                 */
-/* output: nothing                                */
-/* side effect : none                             */
-/* return value: result of multiplication in c3   */ 
-complex complex_mul (complex c1, complex c2) {
-  /* c1 * c2 */
+/* función provista para hacer multiplicaciones complejas */
+/* entrada: números complejos c1, c2 */
+/* salida: nada */
+/* efecto secundario: ninguno */
+/* valor devuelto: resultado de la multiplicación en c3 */
+complejo complejo_mul (complejo c1, complejo c2) {
+   /* c1 * c2 */
   complex c3;
   c3.real = c1.real*c2.real - c1.img*c2.img;
   c3.img = c1.img*c2.real + c1.real*c2.img;
   return c3;
 }
 
-/* function provided to do complex division       */
-/* input : complex numbers c1, c2                 */
-/* output: nothing                                */
-/* side effect : none                             */
-/* return value: result of c1/c2 in c3            */ 
-complex complex_div (complex c1, complex c2) { 
-  /* c1 / c2 (i.e. c1 divided by c2 ) */
+/* función provista para hacer divisiones complejas */
+/* entrada: números complejos c1, c2 */
+/* salida: nada */
+/* efecto secundario: ninguno */
+/* valor devuelto: resultado de c1/c2 en c3 */
+complejo complejo_div (complejo c1, complejo c2) {
+   /* c1 / c2 (es decir, c1 dividido por c2 ) */
   complex c3;
   double d;
 
